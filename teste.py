@@ -31,15 +31,15 @@ train, test, validation = dataset[:train_size, :], dataset[train_size:train_size
 trainX, trainY = create_dataset(train, look_back)
 testX, testY = create_dataset(test, look_back)
 
-
-"""model = Sequential()
+"""
+model = Sequential()
 model.add(Dense(units=15, input_shape=(look_back,),activation='relu'))
 model.add(Dense(2))
 model.add(Dense(12))
 
-model.compile(loss="mean_squared_error", optimizer="adam")
+model.compile(loss="mean_squared_logarithmic_error", optimizer="adam")
 
-model.fit(trainX, trainY, epochs=50, batch_size = 1, verbose = 1)
+model.fit(trainX, trainY, epochs=11, batch_size = 1, verbose = 1)
 
 trainScore = model.evaluate(trainX, trainY, verbose=0)
 print('Train Score: %.2f MSE (%.2f RMSE)' % (trainScore, math.sqrt(trainScore)))
@@ -54,7 +54,7 @@ testPredict = model.predict(testX)
 
 
 
-plt.plot(dataset[ train_size:-validation_size , 11:12])
+plt.plot(testY[:, :1])
 
 plt.plot(testPredict[: , :1])
 plt.legend("Teste")
